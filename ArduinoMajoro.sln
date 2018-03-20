@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoMajoro", "ArduinoMajoro\ArduinoMajoro.csproj", "{AC64D581-F0B4-4104-AFC6-0BC59349678D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArduinoMajoroSketch", "ArduinoMajoroSketch", "{F7F7E875-FC2E-45F2-B962-501B73E921A7}"
+	ProjectSection(SolutionItems) = preProject
+		ArduinoMajoroSketch\ArduinoMajoroSketch.ino = ArduinoMajoroSketch\ArduinoMajoroSketch.ino
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2DAAF619-F1F5-409C-8197-3055D254DBC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoMajoro.Tests", "Tests\ArduinoMajoro.Tests\ArduinoMajoro.Tests.csproj", "{CB6712B4-568F-4C6E-9680-39FB77E718B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC64D581-F0B4-4104-AFC6-0BC59349678D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC64D581-F0B4-4104-AFC6-0BC59349678D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC64D581-F0B4-4104-AFC6-0BC59349678D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC64D581-F0B4-4104-AFC6-0BC59349678D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB6712B4-568F-4C6E-9680-39FB77E718B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB6712B4-568F-4C6E-9680-39FB77E718B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB6712B4-568F-4C6E-9680-39FB77E718B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6712B4-568F-4C6E-9680-39FB77E718B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CB6712B4-568F-4C6E-9680-39FB77E718B6} = {2DAAF619-F1F5-409C-8197-3055D254DBC5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D98C89B6-CA24-4B33-9F8F-52867E4E1385}
+	EndGlobalSection
+EndGlobal
