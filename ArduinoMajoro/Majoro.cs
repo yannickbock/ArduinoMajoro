@@ -6,15 +6,14 @@ using System.Threading;
 
 namespace ArduinoMajoro
 {
-    public class Majoro
+    public class Majoro : IMajoro
     {
         private SerialPort _serialPort;
         public Arduino Device { get; private set; }
 
-        public Majoro(Arduino device)
+        public Majoro(string serialPort)
         {
-            Device = device;
-            _serialPort = buildConnection(device.SerialPort);
+            _serialPort = buildConnection(serialPort);
         }
 
         public static Arduino Hello(string name)
@@ -29,37 +28,57 @@ namespace ArduinoMajoro
 
         private static IEnumerable<Arduino> hello()
         {
-            var bytes = ByteBuilder.Hello();
-
             var list = new List<Arduino>();
             foreach (var serialPort in SerialPort.GetPortNames())
             {
-                var connection = buildConnection(serialPort);
-                string result = "";
-                try
+                string name = getName(serialPort);
+                if (!string.IsNullOrEmpty(name))
                 {
-                    connection.Open();
-                    Thread.Sleep(15);
-                    connection.Write(bytes, 0, bytes.Length);
-                    Thread.Sleep(15);
-                    result = connection.ReadExisting();
-                    connection.Close();
-                }
-                catch (Exception)
-                {
-                }
-
-                if (result.Contains("ARDUINO"))
-                {
-                    list.Add(new Arduino(result.Split('|').Last(), serialPort));
+                    list.Add(new Arduino(name, serialPort));
                 }
             }
 
             return list;
         }
 
+        private static string getName(string serialPort)
+        {
+            var bytes = ByteBuilder.Hello();
+
+            var connection = buildConnection(serialPort);
+            string result = "";
+            try
+            {
+                connection.Open();
+                Thread.Sleep(15);
+                connection.Write(bytes, 0, bytes.Length);
+                Thread.Sleep(15);
+                result = connection.ReadExisting();
+                connection.Close();
+            }
+            catch (Exception)
+            {
+            }
+
+            if (result.Contains("ARDUINO"))
+            {
+                result = result.Split('|').Last();
+            }
+
+            return result;
+        }
+
         public void Connect()
         {
+            if (Device == null)
+            {
+                string name = getName(_serialPort.PortName);
+                if (!string.IsNullOrEmpty(name))
+                {
+                    Device = new Arduino(name, _serialPort.PortName);
+                }
+            }
+
             _serialPort.Open();
             Thread.Sleep(15);
         }

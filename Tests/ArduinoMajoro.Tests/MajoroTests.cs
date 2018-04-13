@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Xunit;
 
 namespace ArduinoMajoro.Tests
@@ -10,7 +6,7 @@ namespace ArduinoMajoro.Tests
     public class MajoroTests
     {
         [Theory]
-        [InlineData("Bilbo")]
+        [InlineData("Frodo")]
         [InlineData("Sam")]
         [InlineData("Gandalf")]
         public void Hello_TestNoDeviceAvailable(string name)
@@ -19,7 +15,7 @@ namespace ArduinoMajoro.Tests
         }
 
         [Theory]
-        [InlineData("Frodo")]
+        [InlineData("Bilbo")]
         public void Hello_TestDeviceAvailable(string name)
         {
             var devices = Enumerable.Range(0, 20).Select(x => Majoro.Hello(name)).ToList();
@@ -31,7 +27,7 @@ namespace ArduinoMajoro.Tests
         }
 
         [Theory]
-        [InlineData("Frodo")]
+        [InlineData("Bilbo")]
         public void Hello_TestSearchGlobalWithoutName(string name)
         {
             var devices = Enumerable.Range(0, 10).SelectMany(x => Majoro.Hello()).ToList();
@@ -45,8 +41,8 @@ namespace ArduinoMajoro.Tests
         [Fact]
         public void Ping_Test()
         {
-            var hello = Majoro.Hello("Frodo");
-            var majoro = new Majoro(hello);
+            var device = Majoro.Hello("Bilbo");
+            var majoro = new Majoro(device.SerialPort);
             majoro.Connect();
 
             var count = Enumerable.Range(0, 20).Count(x => majoro.Ping());
@@ -67,8 +63,8 @@ namespace ArduinoMajoro.Tests
         [InlineData(5)] // Relay
         public void WriteHighAndLow_Test(int pin)
         {
-            var hello = Majoro.Hello("Frodo");
-            var majoro = new Majoro(hello);
+            var device = Majoro.Hello("Bilbo");
+            var majoro = new Majoro(device.SerialPort);
             majoro.Connect();
 
             var count = Enumerable.Range(0, 50).Count(x => majoro.WriteHigh(pin) && majoro.WriteLow(pin));
@@ -85,8 +81,8 @@ namespace ArduinoMajoro.Tests
         [InlineData(9, 5)]
         public void WriteHighAndLow_TestMultiple(int pin1, int pin2)
         {
-            var hello = Majoro.Hello("Frodo");
-            var majoro = new Majoro(hello);
+            var device = Majoro.Hello("Bilbo");
+            var majoro = new Majoro(device.SerialPort);
             majoro.Connect();
 
             var count = Enumerable.Range(0, 50).Count(x =>

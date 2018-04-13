@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arduino.cs" />
+    <Compile Include="IMajoro.cs" />
     <Compile Include="Majoro.cs" />
     <Compile Include="ByteBuilder.cs" />
     <Compile Include="Method.cs" />
